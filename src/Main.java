@@ -1,29 +1,31 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int T = Integer.parseInt(br.readLine());
-        StringBuilder sb = new StringBuilder();
-        StringTokenizer st;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String S = sc.next().toLowerCase();
+        int[] arr = new int[26];
 
-        for(int i = 0; i<T; i++) {
-            st = new StringTokenizer(br.readLine(), " ");
-            int R = Integer.parseInt(st.nextToken());
-            String S = st.nextToken();
-
-            for(int j = 0; j<S.length(); j++){
-                for(int a = 0; a<R; a++)
-                    sb.append(S.charAt(j));
-            }
-            sb.append("\n");
-
+        for(int i = 0; i<S.length(); i++){
+            char ch = S.charAt(i);
+            arr[ch-'a']++;
         }
-        System.out.println(sb);
+
+        int max = -1;
+        char ch = '?';
+        for(int i = 0; i<26; i++){
+            if(arr[i]>max) {
+                max = arr[i];
+                ch = (char)(i + 65);
+            }
+            else if(arr[i] == max)
+                ch = '?';
+        }
+           System.out.println(ch);
+
+
+
 
     }
 }
