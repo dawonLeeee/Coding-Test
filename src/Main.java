@@ -3,15 +3,21 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args){
         Scanner in = new Scanner(System.in);
+        String S = in.next();
+        int[] arr = new int[26];
+        for(int i = 0; i<26; i++)
+            arr[i] = -1;
 
-        int N = in.nextInt();
-        String a = in.next();
-        in.close();
+        byte[] str = S.getBytes();
 
-        int sum = 0;
-        for(int i = 0; i<a.length(); i++){
-            sum += (int) a.charAt(i)-'0';
+        for(int i = 0; i<S.length(); i++){
+            char ch = S.charAt(i);
+            if(arr[ch-'a'] == -1)
+                arr[ch-'a'] = i;
         }
-        System.out.println(sum);
+
+        for(int val: arr)
+            System.out.print(val + " ");
+
     }
 }
