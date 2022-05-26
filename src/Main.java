@@ -1,31 +1,62 @@
-import java.util.Scanner;
-
-
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String A = sc.next();
-        String[][] arr = new String[][]{
-                {"0"},
-                {"1"},
-                {"A","B","C"},
-                {"D","E","F"},
-                {"G","H","I"},
-                {"J","K","L"},
-                {"M","N","O"},
-                {"P","Q","R","S"},
-                {"T","U","V"},
-                {"W","X","Y","Z"}
-        };
-        int sum = 0;
-        for(int a = 0; a<A.length(); a++) {
-            for (int i = 0; i < arr.length; i++) {
-                for (int j = 0; j < arr[i].length; j++) {
-                    if(A.charAt(a) == arr[i][j].charAt(0))
-                        sum += (i+1);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String str = br.readLine();
+
+        int count = 0;
+        int len = str.length();
+
+        for(int i = 0; i < len; i++) {
+            char ch = str.charAt(i);
+
+                if (ch == 'c' && i < len-1) {
+                    if (str.charAt(i + 1) == '=')
+                        i++;
+                    else if (str.charAt(i + 1) == '-')
+                        i++;
+
+
+                } else if (ch == 'd' && i < len-1) {
+                    if (str.charAt(i + 1) == '-') {
+                        i++;
+                    }
+                    else if(str.charAt(i+1) == 'z' && i < len-2){
+                        if(str.charAt(i+2) == '='){
+                            i +=2;
+                        }
+                    }
+
+
+
+                } else if (ch == 'l' && i < len-1) {
+                    if (str.charAt(i + 1) == 'j')
+                        i++;
+
+
+                } else if (ch == 'n' && i < len-1) {
+                    if (str.charAt(i + 1) == 'j')
+                        i++;
+
+
+                } else if (ch == 's' && i < len-1) {
+                    if (str.charAt(i + 1) == '=')
+                        i++;
+
+
+                } else if (ch == 'z' && i < len-1) {
+                    if (str.charAt(i + 1) == '=')
+                        i++;
                 }
+
+
+                count++;
             }
-        }
-        System.out.println(sum);
+
+
+        System.out.println(count);
+
     }
 }
