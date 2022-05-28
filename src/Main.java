@@ -1,34 +1,27 @@
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        int cnt = 0;
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+    int A = Integer.parseInt(st.nextToken());
+    int B = Integer.parseInt(st.nextToken());
+    int C = Integer.parseInt(st.nextToken());
+        long count = 1;
 
-        for(int i = 0; i<N; i++) {
-            String S = br.readLine();
-            boolean check[] = new boolean[26];
-            boolean tmp = true;
+    if(B>=C)
+        System.out.println("-1");
+    else {
 
-            for(int j = 0; j<S.length(); j++) {
-                int index = S.charAt(j)-'a';
-                if(check[index]) {
-                    if(S.charAt(j) != S.charAt(j-1)) {
-                        tmp = false;
-                        break;
-                    }
-                } else {
-                    check[index] = true;
-                }
-            }
-            if(tmp) cnt++;
+        while (true) {
+            if (A >= ((C - B) * count))
+                count++;
+            else break;
         }
-
-        System.out.println(cnt);
-
+        System.out.println(count);
+    }
     }
 }
