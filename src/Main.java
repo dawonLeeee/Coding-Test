@@ -1,18 +1,18 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int N = scanner.nextInt();
-        int num = 0;  int cnt = 0;
 
+    public static void main(String[] args) throws IOException {
 
-         for(int i = 0; i<1000000000; i++){
-              cnt += i;
-              num =  1 + cnt*6;
-              if(N <= num) {
-                   System.out.println(i+1);
-                   break;
-              }
-         }
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+        System.out.println(factorial(N));
+
+    }
+    public static int factorial(int N){
+        if(N<= 1) return 1;
+        return N * factorial(N - 1);
     }
 }
