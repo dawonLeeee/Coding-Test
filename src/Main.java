@@ -1,30 +1,35 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.StringTokenizer;
 
+import static java.util.Collections.reverseOrder;
 
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int N = scanner.nextInt();
+    public static void main(String[] args) throws IOException {
+       BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+       int N = Integer.parseInt(br.readLine());
+       int[][] arr = new int[N][2];
 
-        int i;
-        for (i = 0; i <= N; i++) {
-            int number = i;
-            int sum = 0;
+       for(int i = 0; i<N; i++) {
+           StringTokenizer st = new StringTokenizer(br.readLine());
+           arr[i][0] = Integer.parseInt(st.nextToken());
+           arr[i][1] = Integer.parseInt(st.nextToken());
+       }
 
-            while (number != 0) {
-                sum += number % 10;
-                number /= 10;
-            }
+       for(int i = 0; i<N; i++){
+           int rank = 1;
 
-            if (sum + i == N) {
-                break;
-            }
-            if (i == N) {
-                i = 0;
-                break;
-            }
-        }
-        System.out.println(i);
+           for(int j = 0; j<N; j++){
+               if(i == j)
+                   continue;
+               if(arr[i][0] < arr[j][0] && arr[i][1] < arr[j][1])
+                   rank++;
+           }
+           System.out.print(rank + " ");
+       }
     }
 }
