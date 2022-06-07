@@ -1,20 +1,24 @@
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        int count= 1;
-        int num = 666;
-
-        while(count != N){
-            num++;
-            if(String.valueOf(num).contains("666")){
-                count++;
-            }
+    public static void main(String[] args)  {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        int[] arr = new int[N];
+        for(int i = 0; i < N; i++){
+            arr[i] = scanner.nextInt();
         }
-        System.out.println(num);
+        Arrays.sort(arr);
+        for(int i = 0; i < N; i++){
+            System.out.println(arr[i]);
+        }
+
+
+
         }
 }
