@@ -1,22 +1,23 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args)  throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
         int N = Integer.parseInt(br.readLine());
-        boolean[] arr = new boolean[2000001];
+        int[] arr = new int[N];
         for(int i = 0; i < N; i++){
-            int a = Integer.parseInt(br.readLine());
-            arr[a+1000000] = true;
+            arr[i] = Integer.parseInt(br.readLine());
         }
-        for(int i = 0; i < arr.length; i++){
-            if(arr[i])
-                sb.append(i-1000000).append("\n");
+        Arrays.sort(arr);
+        for(int i = 0; i < N; i++){
+            sb.append(arr[i]).append("\n");
         }
         System.out.print(sb);
-
         }
 }
