@@ -10,30 +10,25 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
         StringBuilder sb = new StringBuilder();
-        String[] arr = new String[N];
 
+        String[][] arr = new String[N][2];
 
-        for (int i = 0; i < N; i++) {
-            arr[i] = br.readLine();
+        for(int i = 0; i < N; i++){
+            StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+            arr[i][0] = st.nextToken();
+            arr[i][1] = st.nextToken();
         }
-        HashSet<String> set = new HashSet<>(List.of(arr));
-        String[] brr = set.toArray(new String[0]);
 
-        Arrays.sort(brr, new Comparator<String>() {
+        Arrays.sort(arr, new Comparator<String[]>(){
+
             @Override
-            public int compare(String o1, String o2) {
-                if(o1.length() == o2.length())
-                    return o1.compareTo(o2);
-                else
-                    return o1.length() - o2.length();
-
-
+            public int compare(String[] o1, String[] o2) {
+                return Integer.parseInt(o1[0]) - Integer.parseInt(o2[0]);
             }
-
         });
 
-        for(int i = 0; i < brr.length; i++){
-            sb.append(brr[i]).append("\n");
+        for(int i = 0; i < N; i++){
+            sb.append(arr[i][0]).append(" ").append(arr[i][1]).append("\n");
         }
         System.out.println(sb);
     }
