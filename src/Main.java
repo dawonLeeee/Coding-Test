@@ -8,28 +8,34 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
         int N = Integer.parseInt(br.readLine());
-        StringBuilder sb = new StringBuilder();
 
-        String[][] arr = new String[N][2];
+        int[] origin = new int[N];
+        int[] sorted = new int[N];
+
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        HashMap<Integer, Integer> findRankMap = new HashMap<>();
 
         for(int i = 0; i < N; i++){
-            StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-            arr[i][0] = st.nextToken();
-            arr[i][1] = st.nextToken();
+            origin[i] = sorted[i] = Integer.parseInt(st.nextToken() );
         }
+        Arrays.sort(sorted);
 
-        Arrays.sort(arr, new Comparator<String[]>(){
-
-            @Override
-            public int compare(String[] o1, String[] o2) {
-                return Integer.parseInt(o1[0]) - Integer.parseInt(o2[0]);
+        StringBuilder sb = new StringBuilder();
+        int rank = 0;
+        for(int v: sorted) {
+            if (!findRankMap.containsKey(v)){
+                findRankMap.put(v, rank);
+                rank++;
             }
-        });
-
-        for(int i = 0; i < N; i++){
-            sb.append(arr[i][0]).append(" ").append(arr[i][1]).append("\n");
+        }
+        for(int key : origin){
+            int ranking = findRankMap.get(key);
+            sb.append(ranking).append(" ");
         }
         System.out.println(sb);
     }
 }
+
+
