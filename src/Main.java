@@ -12,19 +12,24 @@ public class Main {
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
 
-        HashMap<String, Integer> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
+
 
         for(int i = 0; i < N; i++){
-            map.put(br.readLine(), 1);
+            String pocketmon = br.readLine();
+            String number = Integer.toString(i+1);
+            map.put(pocketmon, number);
+            map.put(number, pocketmon);
         }
 
-        int count = 0;
+        StringBuilder sb = new StringBuilder();
         for(int i = 0; i < M; i++){
-            String str = br.readLine();
-            if(map.containsKey(str))
-                count += map.get(str);
+            String key = br.readLine();
+            sb.append(map.get(key)).append("\n");
         }
-        System.out.println(count);
+        System.out.println(sb);
     }
+
+
 
 }
