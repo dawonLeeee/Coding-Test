@@ -1,41 +1,30 @@
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
-
+import java.util.HashMap;
+import java.util.StringTokenizer;
 
 public class Main {
+    static int[] arr;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        int N = Integer.parseInt(br.readLine());
-
-        int[] origin = new int[N];
-        int[] sorted = new int[N];
-
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        HashMap<Integer, Integer> findRankMap = new HashMap<>();
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+
+        HashMap<String, Integer> map = new HashMap<>();
 
         for(int i = 0; i < N; i++){
-            origin[i] = sorted[i] = Integer.parseInt(st.nextToken() );
+            map.put(br.readLine(), 1);
         }
-        Arrays.sort(sorted);
 
-        StringBuilder sb = new StringBuilder();
-        int rank = 0;
-        for(int v: sorted) {
-            if (!findRankMap.containsKey(v)){
-                findRankMap.put(v, rank);
-                rank++;
-            }
+        int count = 0;
+        for(int i = 0; i < M; i++){
+            String str = br.readLine();
+            if(map.containsKey(str))
+                count += map.get(str);
         }
-        for(int key : origin){
-            int ranking = findRankMap.get(key);
-            sb.append(ranking).append(" ");
-        }
-        System.out.println(sb);
+        System.out.println(count);
     }
+
 }
-
-
