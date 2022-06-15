@@ -1,35 +1,35 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
-    static int N;
-    static HashMap<Integer, Integer> map = new HashMap<>();
-    static StringTokenizer st;
-    static BufferedReader br;
+       public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
 
-
-    public static void main(String[] args) throws IOException {
-        br = new BufferedReader(new InputStreamReader(System.in));
-        N = Integer.parseInt(br.readLine());
-        st = new StringTokenizer(br.readLine(), " ");
-
+        HashMap<String, String> peopleIn = new HashMap<>();
+        HashSet<String> set = new HashSet<>();
 
         for(int i = 0; i < N; i++){
-            int key = Integer.parseInt(st.nextToken());
-            map.put(key, map.getOrDefault(key, 0)+1);
+            String name = br.readLine();
+            peopleIn.put(name, name);
         }
-        int M = Integer.parseInt(br.readLine());
-        st = new StringTokenizer(br.readLine(), " ");
+
 
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < M; i++){
-            int number = Integer.parseInt(st.nextToken());
-            sb.append(map.getOrDefault(number, 0)).append(" ");
+            String name = br.readLine();
+            if(peopleIn.containsKey(name))
+                set.add(name);
         }
-        System.out.println(sb);
+        ArrayList<String> list = new ArrayList<>(set);
+        Collections.sort(list);
 
+        System.out.println(list.size());
+        for(String s: list)
+            System.out.println(s);
     }
 }
