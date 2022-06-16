@@ -7,24 +7,16 @@ import java.util.StringTokenizer;
 public class Main {
        public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        int N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
+        String s = br.readLine();
 
-        HashSet<String> set  = new HashSet<>();
-        st = new StringTokenizer(br.readLine(), " ");
-        for(int i = 0; i < N; i++){
-            set.add(st.nextToken());
-        }
+        HashSet<String> set = new HashSet<>();
 
-        st = new StringTokenizer(br.readLine(), " ");
-        for(int i = 0; i < M; i++){
-            String num = st.nextToken();
-            if(set.contains(num))
-                set.remove(num);
-            else
-                set.add(num);
+
+        for(int i = 0; i <= s.length(); i++){
+            for(int j = i+1; j <= s.length(); j++){
+                set.add(s.substring(i,j));
             }
+        }
         System.out.println(set.size());
         }
 }
