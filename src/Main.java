@@ -1,7 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.HashSet;
+import java.util.StringTokenizer;
 
 public class Main {
        public static void main(String[] args) throws IOException {
@@ -10,26 +11,20 @@ public class Main {
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
 
-        HashMap<String, String> peopleIn = new HashMap<>();
-        HashSet<String> set = new HashSet<>();
-
+        HashSet<String> set  = new HashSet<>();
+        st = new StringTokenizer(br.readLine(), " ");
         for(int i = 0; i < N; i++){
-            String name = br.readLine();
-            peopleIn.put(name, name);
+            set.add(st.nextToken());
         }
 
-
-        StringBuilder sb = new StringBuilder();
+        st = new StringTokenizer(br.readLine(), " ");
         for(int i = 0; i < M; i++){
-            String name = br.readLine();
-            if(peopleIn.containsKey(name))
-                set.add(name);
+            String num = st.nextToken();
+            if(set.contains(num))
+                set.remove(num);
+            else
+                set.add(num);
+            }
+        System.out.println(set.size());
         }
-        ArrayList<String> list = new ArrayList<>(set);
-        Collections.sort(list);
-
-        System.out.println(list.size());
-        for(String s: list)
-            System.out.println(s);
-    }
 }
