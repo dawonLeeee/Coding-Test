@@ -6,20 +6,23 @@ import java.util.StringTokenizer;
 
 public class Main {
        public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        int x = Integer.parseInt(st.nextToken());
-        int y = Integer.parseInt(st.nextToken());
-        int w = Integer.parseInt(st.nextToken());
-        int h = Integer.parseInt(st.nextToken());
+           BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+           StringTokenizer st = new StringTokenizer(br.readLine());
+           int n = Integer.parseInt(st.nextToken());
+           int k = Integer.parseInt(st.nextToken());
 
-        int min = Math.min(Math.abs(x-w), Math.abs(y-h));
-        if(min > x)
-            min = x;
-        if(min > y)
-            min = y;
-        System.out.println(min);
+           int count = 0;
+           int result = 0;
 
+           for(int i = 1; i <= n; i++){
+               if(n % i == 0)
+                   count++;
+               if(count == k) {
+                    result =  i;
+                    break;
+               }
+           }
+           System.out.println(result);
 
         }
 }
