@@ -7,22 +7,19 @@ import java.util.StringTokenizer;
 public class Main {
        public static void main(String[] args) throws IOException {
            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-           StringTokenizer st = new StringTokenizer(br.readLine());
-           int n = Integer.parseInt(st.nextToken());
-           int k = Integer.parseInt(st.nextToken());
 
-           int count = 0;
-           int result = 0;
+           int max = 0;
+           int sum = 0;
 
-           for(int i = 1; i <= n; i++){
-               if(n % i == 0)
-                   count++;
-               if(count == k) {
-                    result =  i;
-                    break;
-               }
+           for(int i = 0; i < 10; i++) {
+               StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+                int n = Integer.parseInt(st.nextToken());
+                int m = Integer.parseInt(st.nextToken());
+
+                sum += -n + m;
+                if(max < sum)
+                    max = sum;
            }
-           System.out.println(result);
-
-        }
+           System.out.println(max);
+       }
 }
