@@ -1,38 +1,43 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.Buffer;
-import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.StringTokenizer;
 
 
 public class Main {
-    static int fake1 = 0;
-    static int fake2 = 0;
+    
+    static int gcd(int a, int b) { // Greatest Common Number
+    	swap(a, b);
+    	
+    	while(b != 0) {
+	    	a = b;
+	    	b = r;
+    	}
+    	return a;
+    }
+    
+    static void swap(int a, int b) {
+    	if(a < b) {
+    		int tmp;
+    		tmp = a;
+    		a = b;
+    		b = tmp;
+    	}
+    }
+    
+    
+    
 
-       public static void main(String[] args) throws IOException {
-           BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-           int[] a = new int[9];
-           int sum = 0;
-           for(int i = 0; i < 9; i++) {
-               int num = Integer.parseInt(br.readLine());
-               a[i] = num;
-               sum += num;
-           }
-           Arrays.sort(a);
-
-           for(int i = 0; i < 8; i++)
-               for(int j = i + 1; j < 9; j++)
-                   if(sum - (a[i] + a[j]) == 100) {
-                       fake1 = a[i];
-                       fake2 = a[j];
-                   }
-
-
-           for(int i = 0; i < 9; i++) {
-               if((fake1 == a[i]) || fake2 == a[i]) continue;
-               System.out.println(a[i]);
-           }
+    public static void main(String[] args) throws IOException {
+       BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+       StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+       int n1 = Integer.parseInt(st.nextToken());
+       int n2 = Integer.parseInt(st.nextToken());
+           
+       int gcd = gcd(n1, n2);
+       int lcd = n1 * n2 / gcd;
+       System.out.println(gcd);
+       System.out.println(lcd);
        }
+       
 }
