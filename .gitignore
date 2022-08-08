@@ -6,9 +6,9 @@ out/
 ### Eclipse ###
 .apt_generated
 .classpath
+*.class
 .factorypath
 .project
-*.class
 .settings
 .springBeans
 .sts4-cache
