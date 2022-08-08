@@ -10,6 +10,7 @@ public class Main {
     	swap(a, b);
     	
     	while(b != 0) {
+    		int r = a % b;
 	    	a = b;
 	    	b = r;
     	}
