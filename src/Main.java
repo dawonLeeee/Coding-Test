@@ -1,28 +1,30 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Main  {
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
-		int result = 0;
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		int[] arr = new int[N];
+		int sum = 0;
 		
+		int i = 0;
+		while(st.hasMoreTokens())
+			arr[i++] = Integer.parseInt(st.nextToken());
 		
-		if(N == 4 || N == 7) {
-			result = -1;
-		} else 
-			switch(N % 5) {
-				case 1 : result = (N / 5) - 1 + 2; break;
-				case 2 : result = (N / 5) - 2 + 4; break;
-				case 3 : result = (N / 5) + 1; break;
-				case 4 : result = (N / 5) - 1 + 3; break;
-				default : result = (N / 5);
+		Arrays.sort(arr);
+		
+		for(i = 0; i < N; i++) 
+			sum += arr[i] * (N - i);
 			
-		}
-		System.out.println(result);
+		System.out.println(sum);
 	}
+	
 }
 
 
