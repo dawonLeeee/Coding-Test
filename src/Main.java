@@ -1,35 +1,40 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 
 public class Main  {
+	//int[]와는 달리 처음 초기화가 null로 된다
+	static Integer[] dp;
+	
+	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st_minus = new StringTokenizer(br.readLine(), "-");
+		int N = Integer.parseInt(br.readLine());
+		dp = new Integer[N+1];
 		
-		int sum = 0;
-		StringTokenizer st_num;
+		dp[0] = dp[1] = 0;
 		
-		if(st_minus.countTokens() >= 1) {
-			st_num = new StringTokenizer(st_minus.nextToken(), "-|+");
-			while(st_num.hasMoreTokens())
-				sum += Integer.parseInt(st_num.nextToken());
-			while(st_minus.hasMoreTokens()) {
-				st_num = new StringTokenizer(st_minus.nextToken(), "-|+");
-				while(st_num.hasMoreTokens())
-					sum -= Integer.parseInt(st_num.nextToken());
-			}
-		} else {
-			st_num = new StringTokenizer(st_minus.nextToken(), "+");
-			while(st_num.hasMoreTokens())
-				sum += Integer.parseInt(st_num.nextToken());
-		}
-		
-		System.out.println(sum);
-		
+		System.out.println(recur(N));
+	
 	}
+	
+	static int recur(int N) {
+		if(dp[N] == null) {
+			if(N % 6 == 0)
+				dp[N] = Math.min(Math.min(recur(N / 3), recur(N / 2)), recur(N-1)) + 1;
+			else if(N % 3 == 0)
+				dp[N] = Math.min(recur(N / 3), recur(N - 1)) + 1;
+			else if(N % 2 == 0)
+				dp[N] = Math.min(recur(N / 2), recur(N - 1)) + 1;
+			else
+				dp[N] = recur(N - 1) + 1;
+		}
+		return dp[N];	
+	}
+	
+	
+	
 }
 	
 	
