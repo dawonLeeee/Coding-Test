@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 
+
 public class Main  {
 	
 	
@@ -12,15 +13,30 @@ public class Main  {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int T = Integer.parseInt(br.readLine());
 		
-		int[] arr = new int[T+2];
-		arr[1] = 1;
-		arr[2] = 2;
-		arr[3] = 3;
-		for(int i = 4; i <= T; i++)
-			arr[i] = (arr[i-1] + arr[i-2]) % 10007;
+		StringBuilder sb = new StringBuilder();
+		
+		while(T-- > 0) {
+			sb.append(solve(br.readLine())).append("\n");
+		}
+		System.out.println(sb);
 		
 		
-		System.out.println(arr[T]);
+	}
+	
+	public static String solve(String s) {
+		int count = 0;
+		for(char c: s.toCharArray()) {
+			if(c == '(') 
+				count++;
+			else if(count == 0)
+				return "NO";
+			else
+				count--;
+		}
+		if(count == 0)
+			return "YES";
+		else
+			return "NO";
 	}
 		
 }
