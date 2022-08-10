@@ -4,37 +4,33 @@ import java.io.InputStreamReader;
 
 
 public class Main  {
-	//int[]와는 달리 처음 초기화가 null로 된다
-	static Integer[] dp;
+	
+	static int sum;
+	static int count;
 	
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int N = Integer.parseInt(br.readLine());
-		dp = new Integer[N+1];
+		StringBuilder sb = new StringBuilder();
+		int T = Integer.parseInt(br.readLine());
 		
-		dp[0] = dp[1] = 0;
+		int[] arr = new int[11];
 		
-		System.out.println(recur(N));
-	
-	}
-	
-	static int recur(int N) {
-		if(dp[N] == null) {
-			if(N % 6 == 0)
-				dp[N] = Math.min(Math.min(recur(N / 3), recur(N / 2)), recur(N-1)) + 1;
-			else if(N % 3 == 0)
-				dp[N] = Math.min(recur(N / 3), recur(N - 1)) + 1;
-			else if(N % 2 == 0)
-				dp[N] = Math.min(recur(N / 2), recur(N - 1)) + 1;
-			else
-				dp[N] = recur(N - 1) + 1;
+		arr[1] = 1;
+		arr[2] = 2;
+		arr[3] = 4;
+		for(int j = 4; j <= 10; j++) {
+			for(int i = j-1; i > j-4; i--) 
+				arr[j] += arr[i];
 		}
-		return dp[N];	
+		
+		for(int i = 0; i < T; i++) {
+			int N = Integer.parseInt(br.readLine());
+			sb.append(arr[N]).append("\n");
+		}
+		System.out.println(sb);
 	}
-	
-	
-	
+		
 }
 	
 	
