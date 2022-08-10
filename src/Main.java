@@ -5,30 +5,22 @@ import java.io.InputStreamReader;
 
 public class Main  {
 	
-	static int sum;
-	static int count;
+	
 	
 	
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
 		int T = Integer.parseInt(br.readLine());
 		
-		int[] arr = new int[11];
-		
+		int[] arr = new int[T+2];
 		arr[1] = 1;
 		arr[2] = 2;
-		arr[3] = 4;
-		for(int j = 4; j <= 10; j++) {
-			for(int i = j-1; i > j-4; i--) 
-				arr[j] += arr[i];
-		}
+		arr[3] = 3;
+		for(int i = 4; i <= T; i++)
+			arr[i] = (arr[i-1] + arr[i-2]) % 10007;
 		
-		for(int i = 0; i < T; i++) {
-			int N = Integer.parseInt(br.readLine());
-			sb.append(arr[N]).append("\n");
-		}
-		System.out.println(sb);
+		
+		System.out.println(arr[T]);
 	}
 		
 }
