@@ -1,86 +1,53 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
-
-
-
 public class Main  {
-	public static Integer[] arr;
-	public static int size = 0;
-	
-	
-	public static void main(String[] args) throws IOException{
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		StringTokenizer st;
-		
-		int T = Integer.parseInt(br.readLine());
-		
-		arr = new Integer[T];
-		
-		
-		
+	String hand;
 
-		int i = 0;
-		while(T-- > 0) {
-			st = new StringTokenizer(br.readLine(), " ");
-			
-
-			switch(st.nextToken()) {
-				case("push") : 
-					push(Integer.parseInt(st.nextToken())); break;
-				case("pop") :	sb.append(pop()).append("\n"); break;
-				case("size") : sb.append(size()).append("\n"); break;
-				case("empty") : sb.append(empty()).append("\n"); break;
-				case("top") : sb.append(top()).append("\n"); break;
-			}
-		}
-		System.out.println(sb);
-		
-		
+	 public String solution(int[] numbers, String hand)  {
+         this.hand = hand;
+		 	String answer = "";
+		 	
+		 	int left = 10, right = 12;;
+		 	
+		 	for(int n: numbers) {
+		 		switch(n) {
+				 	case 1 : case 4 : case 7 : 
+				 		answer += "L"; left = n; break;
+				 	case 3 : case 6 : case 9 : 
+				 		answer += "R"; right = n - 2; break;
+				 	case 2 : case 5 : case 8 : 
+				 		answer += leftOrRight(left, right, n); break;
+				 	case 0 :	
+				 		answer += leftOrRight(right, left, n); break;
+		 		}
+		 	}
+		 	return answer;
 	}
+	 
+	 public String leftOrRight(int left, int right, int n) {
+		 if(Math.abs(n-left) < Math.abs(n-right)) {
+			 left = n;
+			 return "L";
+		 }
+		 else if(left > right) {
+			 right = n;
+			 return "R";
+	 	}
+		 else {	 // left == right
+			 if(hand.equals("right")) {
+				 right = n;
+				 return "R";
+			 } else {
+				 left = n;
+				 return "L";
+			 }
+		 }
+	 }
 	
-	
-	
-	
-	public static void push(int num) {
-		 arr[size++] = num;	 
-	}
-	
-	static int pop() {
-		if(size == 0)
-			return -1;
-		else {
-			int pop = arr[--size];
-			arr[size] = null;
-			return pop;
-			
-		}
-	}
-	
-	static int size() {
-		return size;
-	}
-	
-	static int empty() {
-		if(size == 0)
-			return 1;
-		else
-			return 0;
-	}
-
-	static int top() {
-		if(size == 0)
-			return -1;
-		else
-			return arr[size - 1];
-	}
-	
-	
-		
-		
 }
+
+
+
+
+	
 
 
 
