@@ -2,23 +2,18 @@
 
 
 public class Solution {
-	public int solution(int[] numbers) {
-        int answer = 0;
-        int sumOneToTen = 0;
-        int sum = 0;
-        
-        
-        
-        for(int n: numbers)
-        	sum += n;
-        
-        
-        
-        for(int i = 0; i < 10; i++)
-        	sumOneToTen += i;
-        
-        
-        answer = sumOneToTen - sum;
+	public int solution(int[] absolutes, boolean[] signs) {
+		int answer = 0;
+		for(int i = 0; i < signs.length; i++) {
+			answer += returnAbs(absolutes[i], signs[i]);
+		}
+
         return answer;
     }
+	
+	public int returnAbs(int num, boolean flag) {
+		if(!flag)
+			num = -num;
+		return num;
+	}
 }
