@@ -1,47 +1,62 @@
-public class Main  {
-	String hand;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Stack;
+import java.util.StringTokenizer;
 
-	 public String solution(int[] numbers, String hand)  {
-         this.hand = hand;
-		 	String answer = "";
-		 	
-		 	int left = 10, right = 12;;
-		 	
-		 	for(int n: numbers) {
-		 		switch(n) {
-				 	case 1 : case 4 : case 7 : 
-				 		answer += "L"; left = n; break;
-				 	case 3 : case 6 : case 9 : 
-				 		answer += "R"; right = n - 2; break;
-				 	case 2 : case 5 : case 8 : 
-				 		answer += leftOrRight(left, right, n); break;
-				 	case 0 :	
-				 		answer += leftOrRight(right, left, n); break;
-		 		}
-		 	}
-		 	return answer;
-	}
-	 
-	 public String leftOrRight(int left, int right, int n) {
-		 if(Math.abs(n-left) < Math.abs(n-right)) {
-			 left = n;
-			 return "L";
-		 }
-		 else if(left > right) {
-			 right = n;
-			 return "R";
-	 	}
-		 else {	 // left == right
-			 if(hand.equals("right")) {
-				 right = n;
-				 return "R";
-			 } else {
-				 left = n;
-				 return "L";
-			 }
-		 }
-	 }
+public class Main  {
+	static LinkedList<Integer> list;
 	
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String line = br.readLine();
+		
+		Stack<Character> st = new Stack<>();
+		boolean flag = true;
+		int answer = 0;
+		int cnt = 1;
+		for(int i = 0; i < line.length(); i++) {
+			char cur = line.charAt(i);
+			if(cur == '(') {
+				st.push(cur);
+				cnt *= 2;
+			} else if(cur == '[') {
+				st.push(cur);
+				cnt *= 3;
+			} else {
+				if(cur == ')') {
+					//기존 stack에 저장된 값이 없었거나 (이 아닌경우
+					if(st.isEmpty() || st.peek() != '(') {
+						flag = false;
+						break;
+					}
+					//()이 만났을 경우 기존까지 계산하던 값들을 answer에 반환한다
+					if(line.charAt(i-1) == '(') {
+						answer += cnt;
+					}
+					st.pop(); // 기존의 (를 stack에서 제거한다.
+					cnt /= 2; // ?????????????????
+				} else if(cur == ']') {
+					if(st.isEmpty() || st.peek() != '[') {
+						flag = false;
+						break;
+					}
+					if(line.charAt(i-1) == '[') {
+							answer += cnt;
+					}
+					st.pop();
+					cnt /= 3; // ????????????
+				}
+			}
+			
+		}
+		// 괄호의 배열이 정상이 아닐 경우
+		if(!flag || !st.isEmpty()) 
+			System.out.println(0);
+		else
+			System.out.println(answer);
+	}
 }
 
 
