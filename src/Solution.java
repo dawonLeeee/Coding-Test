@@ -1,24 +1,11 @@
 class Solution {
-    public int solution(int[] nums) {
+    public int solution(String s) {
         int answer = 0;
-        int countMonster = 0;
-        int numLen = nums.length / 2;
-        
-        boolean[] arr = new boolean[200001];
-        
-        for(int i = 0; i < nums.length; i++) {
-        	arr[nums[i]] = true;
+        String[] num = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+        for(int i = 0; i < 10; i++) {
+        	s = s.replace(num[i], Integer.toString(i));
         }
-        
-        
-        for(int i = 0; i < arr.length; i++) {
-        	if(arr[i]) countMonster++;
-        }
-        
-        
-        
-        answer = numLen > countMonster? countMonster : numLen;
-        
+        answer = Integer.parseInt(s);
         
         
         return answer;
