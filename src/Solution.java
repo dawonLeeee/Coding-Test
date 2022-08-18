@@ -1,28 +1,25 @@
 class Solution {
-    public int solution(int[][] sizes) {
+    public int solution(int[] nums) {
         int answer = 0;
+        int countMonster = 0;
+        int numLen = nums.length / 2;
         
-        int maxLt = Integer.MIN_VALUE;
-        int maxRt = Integer.MIN_VALUE;
+        boolean[] arr = new boolean[200001];
         
-        for(int i = 0; i < sizes.length; i++) {
-        	if(sizes[i][0] > sizes[i][1]) {
-        		int tmp = 0;
-        		tmp = sizes[i][0];
-        		sizes[i][0] = sizes[i][1];
-        		sizes[i][1] = tmp;
-
-        	}
-        	
-        	if(sizes[i][0] > maxLt)
-        		maxLt = sizes[i][0];
-        	if(sizes[i][1] > maxRt)
-        		maxRt = sizes[i][1];
+        for(int i = 0; i < nums.length; i++) {
+        	arr[nums[i]] = true;
         }
         
-      
         
-        answer = maxLt * maxRt;
+        for(int i = 0; i < arr.length; i++) {
+        	if(arr[i]) countMonster++;
+        }
+        
+        
+        
+        answer = numLen > countMonster? countMonster : numLen;
+        
+        
         
         return answer;
     }
