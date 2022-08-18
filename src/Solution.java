@@ -1,23 +1,28 @@
-import java.util.*;
+class Solution {
+    public int solution(int[][] sizes) {
+        int answer = 0;
+        
+        int maxLt = Integer.MIN_VALUE;
+        int maxRt = Integer.MIN_VALUE;
+        
+        for(int i = 0; i < sizes.length; i++) {
+        	if(sizes[i][0] > sizes[i][1]) {
+        		int tmp = 0;
+        		tmp = sizes[i][0];
+        		sizes[i][0] = sizes[i][1];
+        		sizes[i][1] = tmp;
 
-public class Solution {
-    public int[] solution(int []arr) {
-    	int count = 1;
-        int[] answer = {};
-        
-        for(int i = 1; i < arr.length; i++) {
-        	if(arr[i-1] == arr[i]) {
-        		arr[i-1] = -1;
-        	} else count++;
+        	}
+        	
+        	if(sizes[i][0] > maxLt)
+        		maxLt = sizes[i][0];
+        	if(sizes[i][1] > maxRt)
+        		maxRt = sizes[i][1];
         }
         
-        answer = new int[count];
+      
         
-        int j = 0;
-        for(int i: arr) {
-        	if(i != -1)
-        		answer[j++] = i;
-        }
+        answer = maxLt * maxRt;
         
         return answer;
     }
