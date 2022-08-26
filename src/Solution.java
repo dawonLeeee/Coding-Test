@@ -1,53 +1,70 @@
-
+import java.util.HashMap;
+import java.util.Map;
 
 class Solution {
     public int solution(int n, int[] lost, int[] reserve) {
         int answer = 0;
-        int[] arr = new int[n];
+        Map<Integer, Integer> map = new HashMap<>();
         
-        for(int i : lost)
-        	arr[i-1]--;
-        for(int i : reserve)
-        	arr[i-1]++;
         
-        if(arr[0] == -1) {
-        	if(arr[1] == 1) {
-        		arr[0] = 0;
-        		arr[1] = 0;
-        	}
-        }
-  
-        for(int i = 1; i < n - 1; i++) {
-        	if(arr[i] == -1) {
-        		if(arr[i-1] == 1) {
-        			arr[i-1] = 0;
-        			arr[i] = 0;
-        		} else if(arr[i+1] == 1) {
-        			arr[i] = 0;
-        			arr[i+1] = 0;
+        for(int i = 0; i <= n + 1; i++)
+        	map.put(i, 0);
+        
+        
+       
+       	for(int j : lost)
+       		map.put(j, -1);
+       	
+       	for(int j : reserve) {
+       		if(map.get(j) == -1)
+       			map.put(j, 0);
+       		else
+       			map.put(j, 1);
+       	}
+        
+        
+        for(int i : map.keySet())
+        	System.out.print(map.get(i) + " ");
+        System.out.println();
+
+        
+        for(int i = 1; i <= n; i++) {
+        	if(map.get(i) == -1) {
+        		if(map.get(i-1) == 1) {
+        			map.put(i, 0);
+        			map.put(i-1, 0);
+        		}
+        		else if(map.get(i+1) == 1) {
+        			map.put(i, 0);
+        			map.put(i+1, 0);
         		}
         	}
         }
-        if(arr[n-1] == -1) {
-        	if(arr[n-2] == 1) {
-        		arr[n-1] = 0;
-        		arr[n-2] = 0;
-        	}
-        }
-        
-        for(int i: arr)
-        	if(i != -1) answer++;
-        
-        	
         
         
-        return answer;
+        
+        for(int i : map.keySet())
+        	System.out.print(map.get(i) + " ");
+        System.out.println();
+
+        
+        for(int i : map.keySet())
+        	if(map.get(i) >= 0)
+        		answer++;
+        
+        
+        
+        
+        return answer-2;
     }
-    
     public static void main(String[] args) {
-		Solution sol = new Solution();
+    	Solution sol = new Solution();
+    	
+    	int n = 5;
 		int[] lost = {2, 4};
-		int[] reserve = {1, 3, 5};
-		System.out.println(sol.solution(5, lost, reserve));
+		int[] reserve = {3};
+		
+		System.out.println(sol.solution(n, lost, reserve));
+		
 	}
 }
