@@ -1,70 +1,40 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
+import java.util.HashSet;
 
 class Solution {
-    public int solution(int n, int[] lost, int[] reserve) {
-        int answer = 0;
-        Map<Integer, Integer> map = new HashMap<>();
+    public int[] solution(int[] numbers) {
+        int[] answer = {};
+        HashSet<Integer> set = new HashSet<>();
         
-        
-        for(int i = 0; i <= n + 1; i++)
-        	map.put(i, 0);
-        
-        
-       
-       	for(int j : lost)
-       		map.put(j, -1);
-       	
-       	for(int j : reserve) {
-       		if(map.get(j) == -1)
-       			map.put(j, 0);
-       		else
-       			map.put(j, 1);
-       	}
-        
-        
-        for(int i : map.keySet())
-        	System.out.print(map.get(i) + " ");
-        System.out.println();
-
-        
-        for(int i = 1; i <= n; i++) {
-        	if(map.get(i) == -1) {
-        		if(map.get(i-1) == 1) {
-        			map.put(i, 0);
-        			map.put(i-1, 0);
-        		}
-        		else if(map.get(i+1) == 1) {
-        			map.put(i, 0);
-        			map.put(i+1, 0);
-        		}
+        for(int i = 0; i < numbers.length - 1; i++) {
+        	for(int j = i+1; j < numbers.length; j++) {
+        		set.add(numbers[i] + numbers[j]);
         	}
         }
         
+        answer = new int[set.size()];
+        int j = 0;
+        for(int i : set) {
+        	answer[j++] = i;
+        }
         
-        
-        for(int i : map.keySet())
-        	System.out.print(map.get(i) + " ");
-        System.out.println();
-
-        
-        for(int i : map.keySet())
-        	if(map.get(i) >= 0)
-        		answer++;
-        
+        Arrays.sort(answer);
+        	
         
         
         
-        return answer-2;
+        
+        
+        
+        
+        
+        
+        return answer;
     }
     public static void main(String[] args) {
-    	Solution sol = new Solution();
-    	
-    	int n = 5;
-		int[] lost = {2, 4};
-		int[] reserve = {3};
+		Solution sol = new Solution();
 		
-		System.out.println(sol.solution(n, lost, reserve));
-		
+		int[] arr = {2, 1, 3, 4, 1};
+		System.out.println(sol.solution(arr));
 	}
 }
