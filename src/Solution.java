@@ -1,40 +1,40 @@
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 class Solution {
-    public int[] solution(int[] numbers) {
-        int[] answer = {};
-        HashSet<Integer> set = new HashSet<>();
+	static ArrayList<Integer> list = new ArrayList<>();
+	
+    public int solution(int n) {
+        String str = "";
         
-        for(int i = 0; i < numbers.length - 1; i++) {
-        	for(int j = i+1; j < numbers.length; j++) {
-        		set.add(numbers[i] + numbers[j]);
-        	}
-        }
-        
-        answer = new int[set.size()];
-        int j = 0;
-        for(int i : set) {
-        	answer[j++] = i;
-        }
-        
-        Arrays.sort(answer);
-        	
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        return answer;
+        tripleNum(n);
+    	for(int i : list) {
+    		str += i;
+    	}
+    	System.out.println("str : " + str);
+    	int num = Integer.parseInt(str);
+    	System.out.println("num : " + num);
+    	
+
+    	int answer = Integer.parseInt(str, 3);
+  
+    	
+    	return answer;
     }
+
+    public void tripleNum(int n) {
+    	if(n == 0) return;
+    		
+    	list.add(n%3);
+    	tripleNum(n= n/3);
+    }
+    
+    
     public static void main(String[] args) {
 		Solution sol = new Solution();
 		
-		int[] arr = {2, 1, 3, 4, 1};
-		System.out.println(sol.solution(arr));
+		
+		int n = 45;
+		
+		System.out.println("답 : " + sol.solution(n));
 	}
 }
