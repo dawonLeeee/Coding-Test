@@ -1,20 +1,14 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.Scanner;
 
 public class Main {
-
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st;
-		int sum = Integer.parseInt(br.readLine());
-		int cnt = Integer.parseInt(br.readLine());
-		while(cnt-->0){
-			String tmp = br.readLine();
-			st = new StringTokenizer(tmp, " ");
-			sum -= Integer.parseInt(st.nextToken()) * Integer.parseInt(st.nextToken());
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		StringBuilder sb = new StringBuilder();
+		int num = sc.nextInt()/4;
+		while(num--> 0){
+			sb.append("long ");
 		}
-		System.out.println(sum == 0 ? "Yes" : "No");
+		sb.append("int");
+		System.out.println(sb);
 	}
 }
