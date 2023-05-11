@@ -6,14 +6,26 @@ import java.util.StringTokenizer;
 public class Main {
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int N = Integer.parseInt(br.readLine());
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		String target = br.readLine();
+		StringBuilder sb = new StringBuilder();
+		int N = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
 
-		int result = 0;
-		while(N--> 0){
-			if(st.nextToken().equals(target)) result++;
+		String[] arr = new String[N];
+
+		while(M--> 0){
+			st = new StringTokenizer(br.readLine(), " ");
+			int fst = Integer.parseInt(st.nextToken());
+			int lst = Integer.parseInt(st.nextToken());
+			String ball = st.nextToken();
+			while(fst <= lst){
+				arr[fst++ -1] = ball;
+			}
 		}
-		System.out.println(result);
+		for(int i = 0; i < N-1; i++){
+			sb.append(null == arr[i] ? "0" : arr[i]).append(" ");
+		}
+		sb.append(null == arr[N-1]? "0" : arr[N-1]);
+		System.out.println(sb);
 	}
 }
