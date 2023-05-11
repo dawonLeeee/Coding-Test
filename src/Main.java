@@ -4,17 +4,16 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st;
-		int sum = Integer.parseInt(br.readLine());
-		int cnt = Integer.parseInt(br.readLine());
-		while(cnt-->0){
-			String tmp = br.readLine();
-			st = new StringTokenizer(tmp, " ");
-			sum -= Integer.parseInt(st.nextToken()) * Integer.parseInt(st.nextToken());
+		int N = Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		String target = br.readLine();
+
+		int result = 0;
+		while(N--> 0){
+			if(st.nextToken().equals(target)) result++;
 		}
-		System.out.println(sum == 0 ? "Yes" : "No");
+		System.out.println(result);
 	}
 }
