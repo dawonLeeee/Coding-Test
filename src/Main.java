@@ -1,33 +1,22 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 public class Main{
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		StringBuilder sb = new StringBuilder();
-		int N = Integer.parseInt(st.nextToken());
-		int M = Integer.parseInt(st.nextToken());
-		int tmp = -1;
-		int[] arr = new int[N+1];
-		for(int i = 0; i <= N; i++){
+		Integer[] arr = new Integer[31];
+		String result = "";
+
+		for(int i = 1; i <= 30; i++){
 			arr[i] = i;
 		}
-
-		while(M-->0){
-			st = new StringTokenizer(br.readLine());
-			int fst = Integer.parseInt(st.nextToken());
-			int lst = Integer.parseInt(st.nextToken());
-			tmp = arr[fst];
-			arr[fst] =  arr[lst];
-			arr[lst] = tmp;
+		for(int i = 1; i <= 28; i++){
+			arr[Integer.parseInt(br.readLine())] = 0;
 		}
-		for(int i = 1; i < N; i++){
-			sb.append(arr[i]).append(" ");
+		for(int i = 1; i <= 30; i++){
+			result += (0 == arr[i] ? "" : arr[i] + " ");
 		}
-		sb.append(arr[N]);
-		System.out.println(sb);
+		System.out.println(result.trim());
 	}
 }
