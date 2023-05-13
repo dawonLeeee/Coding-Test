@@ -3,29 +3,31 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Main{
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		StringTokenizer st = new StringTokenizer(br.readLine());
 		StringBuilder sb = new StringBuilder();
 		int N = Integer.parseInt(st.nextToken());
 		int M = Integer.parseInt(st.nextToken());
+		int tmp = -1;
+		int[] arr = new int[N+1];
+		for(int i = 0; i <= N; i++){
+			arr[i] = i;
+		}
 
-		String[] arr = new String[N];
-
-		while(M--> 0){
-			st = new StringTokenizer(br.readLine(), " ");
+		while(M-->0){
+			st = new StringTokenizer(br.readLine());
 			int fst = Integer.parseInt(st.nextToken());
 			int lst = Integer.parseInt(st.nextToken());
-			String ball = st.nextToken();
-			while(fst <= lst){
-				arr[fst++ -1] = ball;
-			}
+			tmp = arr[fst];
+			arr[fst] =  arr[lst];
+			arr[lst] = tmp;
 		}
-		for(int i = 0; i < N-1; i++){
-			sb.append(null == arr[i] ? "0" : arr[i]).append(" ");
+		for(int i = 1; i < N; i++){
+			sb.append(arr[i]).append(" ");
 		}
-		sb.append(null == arr[N-1]? "0" : arr[N-1]);
+		sb.append(arr[N]);
 		System.out.println(sb);
 	}
 }
