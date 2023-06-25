@@ -12,41 +12,27 @@ public class Main{
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		int N = Integer.parseInt(st.nextToken());
 		int M = Integer.parseInt(st.nextToken());
+		List<Integer> arr = new ArrayList<>();
 
-		List<Integer> lst = new ArrayList<>();
-		int val = 0;
-		int tmp = 0;
-		String str = "";
 
-		for(int i = 1; i <= N; i++){
-			lst.add(i-1, i);
-		}
-
-		for(int j = 0; j < M; j++){
+		for(int i = 0; i < M * N;){
 			st = new StringTokenizer(br.readLine(), " ");
-			int a = Integer.parseInt(st.nextToken());
-			int b = Integer.parseInt(st.nextToken());
-
-			if((b-a)%2 == 1) {
-				val = (b-a)/2+1;
-			} else {
-				val = (b-a)/2;
+			while(st.hasMoreTokens()){
+				arr.add(i++, Integer.parseInt(st.nextToken()));
 			}
-			for(int k = 0; k < val; k++){
-				tmp = lst.get(a-1+k);
-				lst.set(a-1+k, lst.get(b-1-k));
-				lst.set(b-1-k, tmp);
+		}
+		for(int i = 0; i < M * N;){
+			st = new StringTokenizer(br.readLine(), " ");
+			while(st.hasMoreTokens()){
+				arr.set(i, arr.get(i)+Integer.parseInt(st.nextToken()));
+				i++;
 			}
-
-			for(int i = 0; i < lst.size(); i++){
-				str += lst.get(i) + " ";
-			}
-			System.out.println(str);
-			System.out.println("\n");
 		}
 
-		for(int i = 0; i < lst.size(); i++){
-			str += lst.get(i) + " ";
+		String str = "";
+		for(int i = 0; i < arr.size(); i++){
+			str += arr.get(i) + " ";
+			if((i+1)%M == 0) str+= "\n";
 		}
 		System.out.println(str);
 	}
