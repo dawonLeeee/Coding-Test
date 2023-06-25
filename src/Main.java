@@ -9,32 +9,19 @@ import java.util.StringTokenizer;
 public class Main{
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		int N = Integer.parseInt(st.nextToken());
-		int M = Integer.parseInt(st.nextToken());
+		StringTokenizer st;
 		List<Integer> arr = new ArrayList<>();
-
-
-		for(int i = 0; i < M * N;){
-			st = new StringTokenizer(br.readLine(), " ");
-			while(st.hasMoreTokens()){
-				arr.add(i++, Integer.parseInt(st.nextToken()));
+		int maxNum = -1;
+		for(int i = 0; i < 9; i++){
+			st = new StringTokenizer(br.readLine());
+			for(int j = 0; j < 9; j++){
+				int n = Integer.parseInt(st.nextToken());
+				if(maxNum < n) maxNum = n;
+				arr.add(n);
 			}
 		}
-		for(int i = 0; i < M * N;){
-			st = new StringTokenizer(br.readLine(), " ");
-			while(st.hasMoreTokens()){
-				arr.set(i, arr.get(i)+Integer.parseInt(st.nextToken()));
-				i++;
-			}
-		}
-
-		String str = "";
-		for(int i = 0; i < arr.size(); i++){
-			str += arr.get(i) + " ";
-			if((i+1)%M == 0) str+= "\n";
-		}
-		System.out.println(str);
+		System.out.println(maxNum);
+		System.out.println((arr.indexOf(maxNum)/9 +1) + " " + (arr.indexOf(maxNum)%9+1));
 	}
 }
 
