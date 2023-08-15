@@ -8,34 +8,41 @@ import java.util.*;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		StringBuilder stringBuilder = new StringBuilder();
+		int N = Integer.parseInt(br.readLine());
 
-		int N = Integer.parseInt(st.nextToken()); // 배열의 크기
-		int M = Integer.parseInt(st.nextToken());
-		List<Integer> lst = new ArrayList<>();
+		int[][] arr = new int[N][2];
 
-		while(true){
-			int a = Integer.parseInt(br.readLine());
-			if(a > M) break;
-			lst.add(a);
+		int i = 0;
+		while(i < N){
+			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+			arr[i][0] = Integer.parseInt(st.nextToken());
+			arr[i][1] = Integer.parseInt(st.nextToken());
+			i++;
 		}
 
-		System.out.println(minCnt(lst, M));
+		System.out.println(findHr(arr));
+
+
+
 
 	}
 
-	public static int minCnt(List<Integer> lst, int M) {
-		int cnt = 0;
-		int total = 0;
-		int i = lst.size() - 1;
-		while(i >= 0 && M != total) {
-			while(M < (total + lst.get(i))) i--;
-			total += lst.get(i);
-			cnt++;
-		}
+	public static int findHr(int[][] arr) {
 
-		return cnt;
+		Arrays.sort(arr, (t1, t2)->{
+			return t1[1] - t2[1];
+		});
+		int N = arr.length;
+		int total  = arr[N -1][1] - arr[N-1][0];
+		while(--N > 0) {
+			total = arr[N-1][1] > total ? total : arr[N-1][1];
+			total -= arr[N - 1][0];
+			if(total < 0) return -1;
+			// total과 arr[][1]의 값과 비교해 더 작은걸
+		}
+		return total;
 	}
+
+
 }
 
