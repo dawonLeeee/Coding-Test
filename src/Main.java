@@ -7,19 +7,30 @@ import java.util.*;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
-		solution("pPoooyY");
+		String[] name = {"may", "kein", "kain", "radi"};
+		int[] yearning = {5, 10, 1, 3};
+		String[][] photo = {{"may", "kein", "kain", "radi"},{"may", "kein", "brin", "deny"}, {"kon", "kain", "may", "coni"}};
+
+		solution(name,yearning,photo);
+
+
+
 	}
 
-	public static boolean solution(String s) {
-		String[] arr = s.toLowerCase().split("");
-		int plsMns = 0;
-		for(int i = 0; i < arr.length; i++){
-			if("p".equals(arr[i])) plsMns++;
-			else if("y".equals(arr[i])) plsMns--;
+	public static int[] solution(String[] name, int[] yearning, String[][] photo) {
+		Map<String, Integer> memberScore = new HashMap<>();
+		for(int i = 0; i < name.length; i++){
+			memberScore.put(name[i], yearning[i]);
 		}
-		System.out.println(plsMns);
-		if(plsMns == 0) return true;
-		else return false;
 
+		int[] answer = new int[photo.length];
+		for(int i = 0; i < photo.length; i++){
+			int sum = 0;
+			for(int j = 0; j < photo[i].length; j++){
+				sum += memberScore.get(photo[i][j]) == null ? 0 : memberScore.get(photo[i][j]);
+			}
+			answer[i] = sum;
+		}
+		return answer;
 	}
 }
