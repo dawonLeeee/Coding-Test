@@ -7,32 +7,20 @@ public class Main {
 
 	}
 
-	public int solution(int[] priorities, int location) {
-		Queue<Integer> pQ = new LinkedList<>();
-		Queue<Character> charQue = new LinkedList<>();
-		PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(Collections.reverseOrder());
-		for(int i = 0; i < priorities.length; i++) {
-			charQue.offer((char) ('a' + i));
-			pQ.offer(priorities[i]);
-			priorityQueue.offer(priorities[i]);
-		}
-		char target = (char) ('a' + location);
-		int answer = 0;
-		while(!pQ.isEmpty()) {
-			int p = pQ.poll();
-			int max = priorityQueue.peek();
-			char thisTarget = charQue.poll();
-			if(p == max) {
-				priorityQueue.poll();
-				answer++;
-				if(target == thisTarget) {
-					return answer;
+	public int solution(int[] elements) {
+		Set<Integer> set = new HashSet<>();
+		int start = 1;
+		while(start <= elements.length) {
+			for(int i = 0; i < elements.length; i++) {
+				int value = 0;
+				for(int j = i;j < i + start; j++) {
+					value += elements[j % elements.length];
 				}
-			} else {
-				pQ.offer(p);
-				charQue.offer(thisTarget);
+				set.add(value);
 			}
+			start++;
+
 		}
-		return 0;
+		return set.size();
 	}
 }
